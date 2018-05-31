@@ -1501,7 +1501,7 @@ like so:
   // The number of bytes is buf.remaining().
 
   // Alternatively this copies the above data out of the ByteBuffer for you:
-  bytes[] buf = builder.sizedByteArray();
+  byte[] buf = builder.sizedByteArray();
 ~~~
 </div>
 <div class="language-csharp">
@@ -1513,7 +1513,7 @@ like so:
   // buf.Length - buf.Position.
 
   // Alternatively this copies the above data out of the ByteBuffer for you:
-  bytes[] buf = builder.SizedByteArray();
+  byte[] buf = builder.SizedByteArray();
 ~~~
 </div>
 <div class="language-go">

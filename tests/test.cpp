@@ -1978,6 +1978,18 @@ void UninitializedVectorTest() {
   TEST_EQ(test_1->b(), 40);
 }
 
+// For testing any binaries, e.g. from fuzzing.
+void LoadVerifyBinaryTest() {
+  std::string binary;
+  if (flatbuffers::LoadFile((test_data_path +
+                             "fuzzer/your-filename-here").c_str(),
+                            true, &binary)) {
+    flatbuffers::Verifier verifier(
+          reinterpret_cast<const uint8_t *>(binary.data()), binary.size());
+    TEST_EQ(VerifyMonsterBuffer(verifier), true);
+  }
+}
+
 int main(int /*argc*/, const char * /*argv*/ []) {
   // clang-format off
   #if defined(FLATBUFFERS_MEMORY_LEAK_TRACKING) && \
@@ -2021,6 +2033,7 @@ int main(int /*argc*/, const char * /*argv*/ []) {
     ReflectionTest(flatbuf.data(), flatbuf.size());
     ParseProtoTest();
     UnionVectorTest();
+    LoadVerifyBinaryTest();
   #endif
   // clang-format on
 

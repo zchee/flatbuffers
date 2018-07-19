@@ -1207,6 +1207,11 @@ class FlatBufferBuilder {
     PreAlign(len * elemsize, alignment);
   }
 
+  // Similar to ForceVectorAlignment but for String fields.
+  void ForceStringAlignment(size_t len, size_t alignment) {
+    PreAlign((len + 1) * sizeof(char), alignment);
+  }
+
   /// @endcond
 
   /// @brief Serialize an array into a FlatBuffer `vector`.

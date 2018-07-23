@@ -80,7 +80,6 @@ function mt:StartObject(numFields)
 
     self.currentVTable = vtable
     self.objectEnd = self:Offset()
-    self.minalign = 1
     self.nested = true
 end
 

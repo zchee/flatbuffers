@@ -149,11 +149,15 @@ class LobsterGenerator : public BaseGenerator {
         break;
       }
       case BASE_TYPE_UNION: {
-        for (auto &ev : field.value.type.enum_def->vals.vec) if (ev->value) {
-          code += def + "_as_" + ev->name + "():\n        " +
-                  NamespacedName(*ev->union_type.struct_def) +
-                  " { buf_, buf_.flatbuffers_field_table(pos_, " + offsets +
-                  ") }\n";
+        for (auto it = field.value.type.enum_def->vals.vec.begin();
+             it != field.value.type.enum_def->vals.vec.end(); ++it) {
+          auto &ev = **it;
+          if (ev.value) {
+            code += def + "_as_" + ev.name + "():\n        " +
+                    NamespacedName(*ev.union_type.struct_def) +
+                    " { buf_, buf_.flatbuffers_field_table(pos_, " + offsets +
+                    ") }\n";
+          }
         }
         break;
       }

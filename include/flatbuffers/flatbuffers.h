@@ -2482,9 +2482,6 @@ volatile __attribute__((weak)) const char *flatbuffer_version_string =
 /// @endcond
 }  // namespace flatbuffers
 
-#if defined(_MSC_VER)
-  #pragma warning(pop)
-#endif
 // clang-format on
 
 #endif  // FLATBUFFERS_H_

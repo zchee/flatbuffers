@@ -52,6 +52,7 @@ int main(int /*argc*/, const char * /*argv*/[]) {
 
   // parse json in parser from fbs and bfbs
   ok = parser1.Parse(json_file.c_str(), include_directories);
+  assert(ok);
   ok = parser2.Parse(json_file.c_str(), include_directories);
   assert(ok);
 

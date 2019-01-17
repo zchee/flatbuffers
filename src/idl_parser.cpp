@@ -411,8 +411,10 @@ CheckedError Parser::Next() {
           }
           cursor_ += 2;
           break;
+        } else {
+          // fall thru
         }
-        // fall thru
+        FLATBUFFERS_ATTRIBUTE(fallthrough);
       default:
         const auto has_sign = (c == '+') || (c == '-');
         // '-'/'+' and following identifier - can be a predefined constant like:

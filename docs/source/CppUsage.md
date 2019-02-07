@@ -130,10 +130,10 @@ The following attributes are specific to the object-based API code generation:
     verbatim in the class constructor initializer list for this member.
 
 -   `native_custom_alloc`:"custom_allocator" (on a table or struct): When using the
-    object-based API all generated NativeTables that  are allocated when unpacking 
-    your  flatbuffer will use "custom allocator". The allocator is also used by 
-    any std::vector that appears in a table defined with `native_custom_alloc`. 
-    This can be  used to provide allocation from a pool for example, for faster 
+    object-based API all generated NativeTables that  are allocated when unpacking
+    your  flatbuffer will use "custom allocator". The allocator is also used by
+    any std::vector that appears in a table defined with `native_custom_alloc`.
+    This can be  used to provide allocation from a pool for example, for faster
     unpacking when using the object-based API.
 
     Minimal Example:
@@ -151,8 +151,8 @@ The following attributes are specific to the object-based API code generation:
       typedef T *pointer;
 
       template <class U>
-      struct rebind { 
-        typedef custom_allocator<U> other; 
+      struct rebind {
+        typedef custom_allocator<U> other;
       };
 
       pointer allocate(const std::size_t n) {
@@ -164,7 +164,7 @@ The following attributes are specific to the object-based API code generation:
       }
 
       custom_allocator() throw() {}
-      template <class U> 
+      template <class U>
       custom_allocator(const custom_allocator<U>&) throw() {}
     };
 
@@ -208,11 +208,14 @@ The following attributes are specific to the object-based API code generation:
 
 Finally, the following top-level attribute
 
--   native_include: "path" (at file level): Because the `native_type` attribute
+-   `native_include`: "path" (at file level): Because the `native_type` attribute
     can be used to introduce types that are unknown to flatbuffers, it may be
     necessary to include "external" header files in the generated code.  This
     attribute can be used to directly add an #include directive to the top of
     the generated code that includes the specified path directly.
+
+-   `force_align`: this attribute may not be respected in the object API,
+    depending on the aligned of the allocator used with `new`.
 
 # External references.
 

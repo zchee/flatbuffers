@@ -84,7 +84,7 @@ parent object, and use no virtual table).
 
 ### Types
 
-Built-in scalar types are 
+Built-in scalar types are
 
 -   8 bit: `byte` (`int8`), `ubyte` (`uint8`), `bool`
 
@@ -321,6 +321,9 @@ Current understood attributes:
     these structs to be aligned to that amount inside a buffer, IF that
     buffer is allocated with that alignment (which is not necessarily
     the case for buffers accessed directly inside a `FlatBufferBuilder`).
+    Note: currently not guaranteed to have an effect when used with
+    `--object-api`, since that may allocate objects at alignments less than
+    what you specify with `force_align`.
 -   `bit_flags` (on an enum): the values of this field indicate bits,
     meaning that any value N specified in the schema will end up
     representing 1<<N, or if you don't specify values at all, you'll get
